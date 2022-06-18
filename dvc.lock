@@ -1,0 +1,28 @@
+schema: '2.0'
+stages:
+  model_train:
+    cmd: python src/models/train_model.py
+    deps:
+    - path: data/external/classification-of-plants-of-southeast-asia/bali-26_train/bali-26_train
+      md5: e860d3f557448bbdecc6c38fa69830ed.dir
+      size: 2102407564
+      nfiles: 23748
+    - path: src/models/train_model.py
+      md5: 91d6915cdc40e922714fd83322598fc1
+      size: 4749
+    params:
+      params.yaml:
+        mobileNet.epochs: 1
+  log_production_model:
+    cmd: python src/models/production_model_selection.py
+    deps:
+    - path: src/models/production_model_selection.py
+      md5: 0a212ea64e349f9cea3212815ebf863e
+      size: 2187
+    params:
+      params.yaml:
+        mobileNet.epochs: 1
+    outs:
+    - path: src/models/model.pth
+      md5: 4f2931a82b66ff50f62558aaae2cab51
+      size: 9294669

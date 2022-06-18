@@ -1,0 +1,16 @@
+stages:
+  model_train:
+    cmd: python src/models/train_model.py
+    deps:
+      - data/external/classification-of-plants-of-southeast-asia/bali-26_train/bali-26_train
+      - src/models/train_model.py
+    params:
+      - mobileNet.epochs
+  log_production_model:
+    cmd: python src/models/production_model_selection.py
+    deps:
+      - src/models/production_model_selection.py
+    params:
+      - mobileNet.epochs
+    outs:
+      - src/models/model.pth
