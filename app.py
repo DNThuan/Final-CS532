@@ -40,6 +40,7 @@ def predict(model, image):
         output = torch.exp(model(img_tensor))
         _, output_class = torch.max(output, 1)
     
+    # print()
 
     return output_class
 
@@ -68,3 +69,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000, debug=True)
+
