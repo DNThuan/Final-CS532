@@ -4,9 +4,9 @@ stages:
     cmd: python src/models/train_model.py
     deps:
     - path: data/external/classification-of-plants-of-southeast-asia/bali-26_train/bali-26_train
-      md5: e860d3f557448bbdecc6c38fa69830ed.dir
-      size: 2102407564
-      nfiles: 23748
+      md5: 449659f0f8483b6534133226b6436d25.dir
+      size: 2102349333
+      nfiles: 23747
     - path: src/models/train_model.py
       md5: 91d6915cdc40e922714fd83322598fc1
       size: 4749
