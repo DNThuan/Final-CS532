@@ -5,6 +5,7 @@ from torchvision import transforms
 import json
 from PIL import Image
 import os
+import sys
 import numpy as np
 
 device = ('cuda' if torch.cuda.is_available() else 'cpu')
@@ -13,12 +14,12 @@ webapp_root = "webapp"
 static_dir = os.path.join(webapp_root, "static")
 template_dir = os.path.join(webapp_root, "templates")
 
+
 app = Flask(__name__,  static_folder=static_dir,template_folder=template_dir)
 
-def load_model():
-    model_path = "C:/Users/thuan/Desktop/CVCI/Final_project/final_cvci/src/models/model.pth"
-    model = torch.load(model_path)
-    return model
+model_path = os.path.join(os.getcwd(),"src","models", "model.pth")
+model = torch.load(model_path)
+
 
 def predict(model, image):
     IMG_MEAN = [0.485, 0.456, 0.406]
@@ -47,13 +48,12 @@ def index():
     if request.method == "POST":
         try:
             image = request.files['image_submit']
-            image_path = "C:/Users/thuan/Desktop/CVCI/Final_project/final_cvci/webapp/static/images/" + image.filename
+            image_path = os.path.join(os.getcwd(),"webapp","static","images", image.filename)
             image.save(image_path)
 
-            model = load_model()
             load_image = Image.open(image_path)
 
-            with open("C:/Users/thuan/Desktop/CVCI/Final_project/final_cvci/src/models/class_to_idx.json") as f:
+            with open( os.path.join(os.getcwd(),"src","models", "class_to_idx.json")) as f:
                 class_to_idx = json.load(f)
             pos = list(class_to_idx.values()).index(predict(model, load_image))
             result = list(class_to_idx.keys())[pos]

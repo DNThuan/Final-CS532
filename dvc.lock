@@ -8,8 +8,8 @@ stages:
       size: 2102349333
       nfiles: 23747
     - path: src/models/train_model.py
-      md5: 91d6915cdc40e922714fd83322598fc1
-      size: 4749
+      md5: 38e25f78aa81bdd3853be34ab964f26e
+      size: 4873
     params:
       params.yaml:
         mobileNet.epochs: 1
@@ -17,12 +17,12 @@ stages:
     cmd: python src/models/production_model_selection.py
     deps:
     - path: src/models/production_model_selection.py
-      md5: 0a212ea64e349f9cea3212815ebf863e
-      size: 2187
+      md5: 1281f80ab6c5632e7932aab7ef6e8fe5
+      size: 2195
     params:
       params.yaml:
         mobileNet.epochs: 1
     outs:
     - path: src/models/model.pth
-      md5: 4f2931a82b66ff50f62558aaae2cab51
+      md5: 109395c16b5c64ddb804c5ba0b12b580
       size: 9294669

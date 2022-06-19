@@ -1,5 +1,5 @@
 external_data_config:
-  external_dataset: C:/Users/thuan/Desktop/CVCI/Final_project/final_cvci/data\external/classification-of-plants-of-southeast-asia/bali-26_train/bali-26_train
+  external_dataset: data/external/classification-of-plants-of-southeast-asia/bali-26_train/bali-26_train
 
 
 mlflow_config:  
@@ -12,4 +12,4 @@ mlflow_config:
 mobileNet:
   epochs: 1
 
-model_dir: C:/Users/thuan/Desktop/CVCI/Final_project/final_cvci/src/models/model.pth
+model_dir: models/model.pth

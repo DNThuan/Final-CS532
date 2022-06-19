@@ -59,9 +59,9 @@ def log_production_model(config_path):
         ) 
     model_path  = logged_model+"/data/model.pth"
     loaded_model = torch.load(model_path)
-    torch.save(loaded_model, model_dir)
+    torch.save(loaded_model, os.path.join(os.getcwd(), 'src', model_dir) )
 
 if __name__ == '__main__':
-    config_path = "C:/Users/thuan/Desktop/CVCI/Final_project/final_cvci/params.yaml"
+    config_path = os.path.join(os.getcwd(),"params.yaml")
     log_production_model(config_path)
     

@@ -110,10 +110,10 @@ if __name__=="__main__":
     device = ('cuda' if torch.cuda.is_available() else 'cpu')
     print("device: ", device)
 
-    config_path = "C:/Users/thuan/Desktop/CVCI/Final_project/final_cvci/params.yaml"
+    config_path = os.path.join(os.getcwd(),"params.yaml")
     config = read_params(config_path)
  
-    dir_path = config["external_data_config"]["external_dataset"]
+    dir_path = os.path.join(os.getcwd(),config["external_data_config"]["external_dataset"]) 
 
     dataloaders, class_to_idx = CustomDataset(dir_path, batch_size = 32).load_dataset()
 
@@ -123,3 +123,6 @@ if __name__=="__main__":
     scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)   
 
     model = train_model(model, dataloaders['train'], dataloaders['valid'], optimizer, scheduler, config)    
+
+
+    # mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts --host 0.0.0.0 -p 1234
