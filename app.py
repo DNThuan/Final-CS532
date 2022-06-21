@@ -7,6 +7,7 @@ from PIL import Image
 import os
 import sys
 import numpy as np
+import time
 
 device = ('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -56,12 +57,12 @@ def index():
 
             with open( os.path.join(os.getcwd(),"src","models", "class_to_idx.json")) as f:
                 class_to_idx = json.load(f)
+            start_predict = time.time()
             pos = list(class_to_idx.values()).index(predict(model, load_image))
             result = list(class_to_idx.keys())[pos]
-            
-            print(image_path)
+            total_time_pred = round((time.time()-start_predict),4)
 
-            return render_template("index.html",prediction =  result, img_path = "./static/images/"+image.filename)
+            return render_template("index.html",prediction =  result, img_path = "./static/images/"+image.filename, time = total_time_pred)
         except:
             return {"erro":500}
     else:

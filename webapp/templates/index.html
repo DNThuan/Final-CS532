@@ -68,8 +68,9 @@
             </form>
             <div class="a-center prediction">
                 {% if prediction %}
-                    <img src = "./static/images/1.jpg" style="width: 400px;">
-                    <h2><i> {{prediction}} </i></h2>
+                    <img src = {{img_path}} style="width: 400px;">
+                    <h2><i>Name: {{prediction}} </i></h2>
+                    <h2><i>Time: {{time}}s </i></h2>
                 {% endif %}
             </div>
         </div>
